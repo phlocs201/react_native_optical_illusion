@@ -1,0 +1,3 @@
+rootProject.name = 'react_native_optical_illusion'
+
+include ':app'
