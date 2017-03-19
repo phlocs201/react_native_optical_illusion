@@ -18,13 +18,13 @@ export default class IllusionPage extends Component {
     return (
       <View style={styles.containerView}>
         <Text>錯視のページだよ</Text>
+        <MullerLyer />
         <Button
           onPress={() => {
             this._pressReturn(navigator)
           }}
           title="戻る"
         />
-        <MullerLyer />
       </View>
     );
   }
