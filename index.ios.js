@@ -4,7 +4,7 @@
  * @flow
  */
 
-import { AppRegistry, ListView, Text, View, TextInput } from 'react-native';
+import { AppRegistry, ListView, Text, View, TextInput, StyleSheet, TouchableHighlight } from 'react-native';
 import React, { Component } from 'react';
 import Header from './components/Header';
 
@@ -22,6 +22,14 @@ export default class react_native_optical_illusion extends Component {
 
   _handleChangeName(name) {
     this.setState({name: name});
+  }
+  
+  _renderRow(rowData) {
+    return (
+      <View style={styles.listRow}>
+        <Text>{rowData}</Text>
+      </View>
+    );
   }
 
   render() {
@@ -42,14 +50,12 @@ export default class react_native_optical_illusion extends Component {
          />
         <ListView
           dataSource={data}
-          renderRow={(rowData) => <Text>{rowData}</Text>}
+          renderRow={this._renderRow}
         />
       </View>
     );
   }
 }
-
-
 
 class TextInput2 extends Component {
    render () {
@@ -60,5 +66,14 @@ class TextInput2 extends Component {
         />);
    }    
 }
+
+const styles = StyleSheet.create({
+    listRow: {
+      justifyContent: 'center',
+      height: 50,
+      borderColor: 'gray',
+      borderWidth: 0.5,
+    },
+});
 
 AppRegistry.registerComponent('react_native_optical_illusion', () => react_native_optical_illusion);
