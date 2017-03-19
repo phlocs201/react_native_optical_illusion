@@ -2,6 +2,7 @@
 - a tool by Facebook for watching changes in the filesystem  
 `$ brew install watchman`
 
+- installing `react-native-cli`
 $ npm install -g react-native-cli
 
 ```

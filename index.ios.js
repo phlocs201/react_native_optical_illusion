@@ -9,8 +9,10 @@ import {
   Navigator,
 } from 'react-native';
 import React, { Component } from 'react';
+
 import TopPage from './components/TopPage';
 import IllusionPage from './components/IllusionPage';
+import MullerLyer from './components/optical_illusion/MullerLyer';
 
 export default class react_native_optical_illusion extends Component {
   render() {
