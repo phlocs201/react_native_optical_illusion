@@ -77,10 +77,11 @@ class TextInput2 extends Component {
 }
 
 const styles = StyleSheet.create({
-    listRow: {
-      justifyContent: 'center',
-      height: 50,
-      borderColor: 'gray',
-      borderWidth: 0.5,
-    },
+    
+  listRow: {
+    justifyContent: 'center',
+    height: 50,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+  },
 });
