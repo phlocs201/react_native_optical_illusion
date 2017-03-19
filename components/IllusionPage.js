@@ -6,6 +6,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import MullerLyer from './optical_illusion/MullerLyer';
+
 export default class IllusionPage extends Component {
   _pressReturn(navigator) {
     navigator.push({title: 'TopPage', index: 0});
@@ -22,6 +24,7 @@ export default class IllusionPage extends Component {
           }}
           title="戻る"
         />
+        <MullerLyer />
       </View>
     );
   }
