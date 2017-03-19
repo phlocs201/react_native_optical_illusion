@@ -45,10 +45,7 @@ export default class TopPage extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     const data = ds.cloneWithRows(data_list);
     return (
-      <View style={{
-        flex: 1,
-        paddingTop: 22
-      }}>
+      <View style={styles.containerView}>
         <Header 
           name={name}
         />
@@ -77,10 +74,15 @@ class TextInput2 extends Component {
 }
 
 const styles = StyleSheet.create({
-    listRow: {
-      justifyContent: 'center',
-      height: 50,
-      borderColor: 'gray',
-      borderWidth: 0.5,
-    },
+  containerView: {
+    backgroundColor: 'white',
+    flex: 1,
+    paddingTop: 22,
+  },
+  listRow: {
+    justifyContent: 'center',
+    height: 50,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+  },
 });

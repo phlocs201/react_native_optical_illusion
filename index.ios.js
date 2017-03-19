@@ -25,7 +25,7 @@ export default class react_native_optical_illusion extends Component {
             if (route.index === 0) {
               return (<TopPage navigator={navigator} />)
             } else if (route.index === 1) {
-              return (<IllusionPage />)
+              return (<IllusionPage navigator={navigator}/>)
             }
           }
         }
@@ -33,7 +33,5 @@ export default class react_native_optical_illusion extends Component {
     );
   }
 }
-
-
 
 AppRegistry.registerComponent('react_native_optical_illusion', () => react_native_optical_illusion);
