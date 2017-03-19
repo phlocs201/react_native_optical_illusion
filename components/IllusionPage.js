@@ -10,7 +10,8 @@ import MullerLyer from './optical_illusion/MullerLyer';
 
 export default class IllusionPage extends Component {
   _pressReturn(navigator) {
-    navigator.push({title: 'TopPage', index: 0});
+    //navigator.push({title: 'TopPage', index: 0});
+    navigator.pop();
   }
 
   render () {
@@ -18,7 +19,7 @@ export default class IllusionPage extends Component {
     return (
       <View style={styles.containerView}>
         <Text>錯視のページだよ</Text>
-        <MullerLyer />
+        {navigator.navigationContext._currentRoute.illusion}
         <Button
           onPress={() => {
             this._pressReturn(navigator)
