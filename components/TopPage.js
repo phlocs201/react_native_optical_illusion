@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import Header from './Header';
+import RightwardsArrow from './util/RightwardsArrow';
 import { optical_illusion_set } from '../data/optical_illusion_set';
 
 export default class TopPage extends Component {
@@ -28,7 +29,12 @@ export default class TopPage extends Component {
         this._pressRow(rowId, navigator);
       }}>
         <View style={styles.listRow}>
-          <Text>{rowData}</Text>
+          <View style={styles.listText}>
+            <Text>{rowData}</Text>
+          </View>
+          <View style={styles.listArrow}>
+            <RightwardsArrow />
+          </View>
         </View>
       </TouchableHighlight>
     );
@@ -80,9 +86,19 @@ const styles = StyleSheet.create({
     paddingTop: 22,
   },
   listRow: {
-    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'row',
     height: 50,
+    padding: 20,
     borderColor: 'gray',
     borderWidth: 0.5,
+  },
+  listText: {
+    justifyContent: 'center',
+    flex: 15,
+  },
+  listArrow: {
+    justifyContent: 'center',
+    flex: 1,
   },
 });
