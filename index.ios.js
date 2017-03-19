@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import React, { Component } from 'react';
 import TopPage from './components/TopPage';
+import IllusionPage from './components/IllusionPage';
 
 export default class react_native_optical_illusion extends Component {
   render() {
@@ -18,10 +19,13 @@ export default class react_native_optical_illusion extends Component {
         initialRoute={{title: 'TopPage', index: 0}}
         // initialRouteStack={routes}
         renderScene={(route, navigator) =>
-          <TopPage
-            state={this.state}
-            navigator={navigator}
-          />
+          {
+            if (route.index === 0) {
+              return (<TopPage navigator={navigator} />)
+            } else if (route.index === 1) {
+              return (<IllusionPage />)
+            }
+          }
         }
       />
     );
