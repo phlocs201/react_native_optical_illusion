@@ -6,97 +6,28 @@
 
 import {
   AppRegistry,
-  ListView, Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableHighlight,
   Navigator,
 } from 'react-native';
 import React, { Component } from 'react';
-import Header from './components/Header';
-
-import { optical_illusion_set } from './data/optical_illusion_set';
+import TopPage from './components/TopPage';
 
 export default class react_native_optical_illusion extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data_list: optical_illusion_set,
-      name: 'name',
-    };
-  }
-
-  _handleChangeName(name) {
-    this.setState({name: name});
-  }
-  
-  _renderRow(rowData, rowId, navigator) {
-    return (
-      <TouchableHighlight onPress={() => {
-        this._pressRow(rowId, navigator);
-      }}>
-        <View style={styles.listRow}>
-          <Text>{rowData}</Text>
-        </View>
-      </TouchableHighlight>
-    );
-  }
-  
-  _pressRow(rowId, navigator) {
-    this.setState({name: rowId});
-    navigator.push({title: 'SecondPage', index: 1});
-  }
-
   render() {
-    const { name, data_list } = this.state;
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    const data = ds.cloneWithRows(data_list);
     return (
       <Navigator
         initialRoute={{title: 'TopPage', index: 0}}
         // initialRouteStack={routes}
         renderScene={(route, navigator) =>
-          <View style={{
-            flex: 1,
-            paddingTop: 22
-          }}>
-            <Header 
-              name={name}
-            />
-            <TextInput2
-             _handleChangeName={(name) => this._handleChangeName(name)}
-             name={name}
-             />
-            <ListView
-              dataSource={data}
-              renderRow={(rowData, sectionId, rowId, highlightRow) =>
-                this._renderRow(rowData, rowId, navigator)}
-            />
-          </View>
+          <TopPage
+            state={this.state}
+            navigator={navigator}
+          />
         }
       />
     );
   }
 }
 
-class TextInput2 extends Component {
-   render () {
-     return (<TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(name) => this.props._handleChangeName(name)}
-          value={this.props.name}
-        />);
-   }    
-}
 
-const styles = StyleSheet.create({
-    listRow: {
-      justifyContent: 'center',
-      height: 50,
-      borderColor: 'gray',
-      borderWidth: 0.5,
-    },
-});
 
 AppRegistry.registerComponent('react_native_optical_illusion', () => react_native_optical_illusion);
