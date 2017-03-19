@@ -7,6 +7,9 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
+import Svg,{
+  Line,
+} from 'react-native-svg';
 
 import Header from './Header';
 import { optical_illusion_set } from '../data/optical_illusion_set';
@@ -28,7 +31,12 @@ export default class TopPage extends Component {
         this._pressRow(rowId, navigator);
       }}>
         <View style={styles.listRow}>
-          <Text>{rowData}</Text>
+          <View style={styles.listText}>
+            <Text>{rowData}</Text>
+          </View>
+          <View style={styles.listArrow}>
+            <RightwardsArrow />
+          </View>
         </View>
       </TouchableHighlight>
     );
@@ -73,6 +81,34 @@ class TextInput2 extends Component {
   }
 }
 
+class RightwardsArrow extends Component {
+  render () {
+    return (
+      <Svg
+        height="15"
+        width="10"
+      >
+        <Line
+          x1="0"
+          y1="0"
+          x2="7.5"
+          y2="7.5"
+          stroke="gray"
+          strokeWidth="2"
+        />
+        <Line
+          x1="0"
+          y1="14.5"
+          x2="7.5"
+          y2="7"
+          stroke="gray"
+          strokeWidth="2"
+        />
+      </Svg>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor: 'white',
@@ -80,9 +116,19 @@ const styles = StyleSheet.create({
     paddingTop: 22,
   },
   listRow: {
-    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'row',
     height: 50,
+    padding: 20,
     borderColor: 'gray',
     borderWidth: 0.5,
+  },
+  listText: {
+    justifyContent: 'center',
+    flex: 15,
+  },
+  listArrow: {
+    justifyContent: 'center',
+    flex: 1,
   },
 });
