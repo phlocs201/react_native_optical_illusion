@@ -7,11 +7,9 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import Svg,{
-  Line,
-} from 'react-native-svg';
 
 import Header from './Header';
+import RightwardsArrow from './util/RightwardsArrow';
 import { optical_illusion_set } from '../data/optical_illusion_set';
 
 export default class TopPage extends Component {
@@ -78,34 +76,6 @@ class TextInput2 extends Component {
         onChangeText={(name) => this.props._handleChangeName(name)}
         value={this.props.name}
       />);
-  }
-}
-
-class RightwardsArrow extends Component {
-  render () {
-    return (
-      <Svg
-        height="15"
-        width="10"
-      >
-        <Line
-          x1="0"
-          y1="0"
-          x2="7.5"
-          y2="7.5"
-          stroke="gray"
-          strokeWidth="2"
-        />
-        <Line
-          x1="0"
-          y1="14.5"
-          x2="7.5"
-          y2="7"
-          stroke="gray"
-          strokeWidth="2"
-        />
-      </Svg>
-    );
   }
 }
 
