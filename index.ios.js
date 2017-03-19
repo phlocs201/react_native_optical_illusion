@@ -17,19 +17,26 @@ export default class react_native_optical_illusion extends Component {
       data_list: optical_illusion_set,
       name: 'ikegami',
     };
-    this._handleChangeName = this._handleChangeName.bind(this);
   }
 
   _handleChangeName(name) {
     this.setState({name: name});
   }
   
-  _renderRow(rowData) {
+  _renderRow(rowData, sectionId, rowId, highlightRow) {
     return (
-      <View style={styles.listRow}>
-        <Text>{rowData}</Text>
-      </View>
+      <TouchableHighlight onPress={() => {
+        this._pressRow(rowId);
+      }}>
+        <View style={styles.listRow}>
+          <Text>{rowData}</Text>
+        </View>
+      </TouchableHighlight>
     );
+  }
+  
+  _pressRow(rowId) {
+    this.setState({name: rowId});
   }
 
   render() {
@@ -45,12 +52,12 @@ export default class react_native_optical_illusion extends Component {
           name={name}
         />
         <TextInput2
-         _handleChangeName={this._handleChangeName}
+         _handleChangeName={(name) => this._handleChangeName(name)}
          name={name}
          />
         <ListView
           dataSource={data}
-          renderRow={this._renderRow}
+          renderRow={(rowData, sectionId, rowId, highlightRow) => this._renderRow(rowData, sectionId, rowId, highlightRow)}
         />
       </View>
     );
