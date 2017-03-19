@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import MullerLyer from './optical_illusion';
+import MullerLyer from './optical_illusion/MullerLyer';
 
 export default class IllusionPage extends Component {
   _pressReturn(navigator) {
