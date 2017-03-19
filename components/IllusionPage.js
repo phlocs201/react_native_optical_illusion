@@ -3,6 +3,7 @@ import {
   View,
   Text,
   Button,
+  StyleSheet,
 } from 'react-native';
 
 export default class IllusionPage extends Component {
@@ -13,10 +14,7 @@ export default class IllusionPage extends Component {
   render () {
     const navigator = this.props.navigator;
     return (
-      <View style={{
-        flex: 1,
-        paddingTop: 22
-      }}>
+      <View style={styles.containerView}>
         <Text>錯視のページだよ</Text>
         <Button
           onPress={() => {
@@ -28,3 +26,12 @@ export default class IllusionPage extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  containerView: {
+    backgroundColor: 'white',
+    flex: 1,
+    paddingTop: 22,
+  },
+});
+
