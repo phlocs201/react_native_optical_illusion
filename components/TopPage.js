@@ -38,11 +38,11 @@ export default class TopPage extends Component {
 
   _pressRow(rowId, navigator) {
     const { data_list } = this.state;
-    navigator.push({title: 'SecondPage', index: 1, illusion: data_list[rowId].component});
+    navigator.push({title: data_list[rowId].name, index: 1, illusion: data_list[rowId].component});
   }
 
   render () {
-    const navigator = this.props.navigator;
+    const { navigator } = this.props;
     const { data_list } = this.state;
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     const data = ds.cloneWithRows(data_list.map(v => v.name));

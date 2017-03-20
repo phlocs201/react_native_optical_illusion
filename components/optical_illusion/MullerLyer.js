@@ -38,12 +38,6 @@ export default class MullerLyer extends Component {
         const allowLength = 40;
         return (
         <View>
-            <Animated.View style={{
-                backgroundColor: 'black',
-                width : value,
-                height: value,
-                opacity: arrowOpacity,
-            }}/>
             <Svg
                 height="350"
                 width="350"
@@ -55,7 +49,7 @@ export default class MullerLyer extends Component {
                     y2={finalY - value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
                 <AnimatedLine
                     x1="20"
@@ -64,7 +58,7 @@ export default class MullerLyer extends Component {
                     y2={finalY - value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
                 <AnimatedLine
                     x1="60"
@@ -81,7 +75,7 @@ export default class MullerLyer extends Component {
                     y2={finalY - value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
                 <AnimatedLine
                     x1="290"
@@ -90,7 +84,7 @@ export default class MullerLyer extends Component {
                     y2={finalY - value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
 
                 <AnimatedLine
@@ -100,7 +94,7 @@ export default class MullerLyer extends Component {
                     y2={finalY + value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
                 <AnimatedLine
                     x1="20"
@@ -109,7 +103,7 @@ export default class MullerLyer extends Component {
                     y2={finalY + value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
                 <AnimatedLine
                     x1="60"
@@ -126,7 +120,7 @@ export default class MullerLyer extends Component {
                     y2={finalY + value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
                 <AnimatedLine
                     x1="290"
@@ -135,7 +129,7 @@ export default class MullerLyer extends Component {
                     y2={finalY + value}
                     stroke="black"
                     strokeWidth="2"
-                    stype={{opacity: arrowOpacity}}
+                    opacity={arrowOpacity}
                 />
             </Svg>
             <Button
