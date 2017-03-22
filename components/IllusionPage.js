@@ -16,23 +16,23 @@ export default class IllusionPage extends Component {
     const { navigator } = this.props;
     const { title, illusion } = navigator.navigationContext._currentRoute;
     return (
-      <View style={styles.containerView}>
-        <View style={styles.header}>
-          <Text style={{color: 'white'}}>{ title }</Text>
+        <View style={styles.containerView}>
+            <View style={styles.header}>
+                <View style={styles.backButton}>
+                    <Button
+                        color="white"
+                        onPress={() => this._pressReturn(navigator)}
+                        title="戻る"
+                    />
+                </View>
+                <View style={styles.headerTextArea}>
+                    <Text style={styles.headerText}>{ title }</Text>
+                </View>
+            </View>
+            <View style={styles.body}>
+                { illusion }
+            </View>
         </View>
-        <View style={styles.body}>
-          { illusion }
-        </View>
-        <View style={styles.footer}>
-          <Button
-            color="white"
-            onPress={() => {
-              this._pressReturn(navigator)
-            }}
-            title="戻る"
-          />
-        </View>
-      </View>
     );
   }
 }
@@ -42,15 +42,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 22,
   },
   header: {
     flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#2980B9',
-    height: 10,
   },
+  headerTextArea: {
+    flex: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backButton: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  headerText: {
+    color: 'white',
+    fontSize: 20,
+   },
   body: {
-    flex: 10,
+    flex: 8,
   },
   footer: {
     flex: 1,

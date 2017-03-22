@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, Animated, Text } from 'react-native';
+import { View, Button, Animated, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import Svg, { Line } from 'react-native-svg';
 
 const AnimatedLine = Animated.createAnimatedComponent(Line);
@@ -10,23 +10,31 @@ export default class Ponzo01 extends Component {
         this.state = {
             opacityAnim: new Animated.Value(0),
             leftAnim: new Animated.Value(0),
+            isAnimationFinished: false,
+            isPressed: false,
         };
     }
 
     _handleStartAnimation() {
-        Animated.sequence([
-            Animated.timing(
-                this.state.opacityAnim,
-                {toValue: 1, duration: 2000},
-            ),
-            Animated.timing(
-                this.state.leftAnim,
-                {toValue: 1, duration: 2000},
-            ),
-        ]).start();
+        if (!this.state.isPressed) {
+            this.setState({ isPressed: true });
+            Animated.sequence([
+                Animated.timing(
+                    this.state.opacityAnim,
+                    {toValue: 1, duration: 2000},
+                ),
+                Animated.timing(
+                    this.state.leftAnim,
+                    {toValue: 1, duration: 2000},
+                ),
+            ]).start(() => this.setState({
+              isAnimationFinished: true,
+            }));
+        }
     }
 
     render() {
+        const {isAnimationFinished} = this.state;
         const opacity1to0 = this.state.opacityAnim.interpolate({
             inputRange: [0, 1],
             outputRange: [1, 0]
@@ -37,83 +45,68 @@ export default class Ponzo01 extends Component {
         });
 
         return (
-          <View style={{
-            width: 200,
-            height: 200,
-            margin: 20,
-            position:'absolute',
-          }}>
+          <View style={styles.containerView}>
+          <View style={styles.figureView}>
+          <TouchableWithoutFeedback
+            onPress={() => this._handleStartAnimation()}
+          >
+          <View style={styles.outerSvg}>
             <View>
-              <Svg
-                height="200"
-                width="200"
-              >
+              <Svg height="200" width="200">
                 {/* 外側の < */}
-                <AnimatedLine
-                  x1="0"
-                  y1="100"
-                  x2="200"
-                  y2="0"
-                  stroke="black"
-                  strokeWidth="2"
-                  opacity={opacity1to0}
-                />
-                <AnimatedLine
-                  x1="0"
-                  y1="100"
-                  x2="200"
-                  y2="200"
-                  stroke="black"
-                  strokeWidth="2"
-                  opacity={opacity1to0}
+                <AnimatedLine x1="0" y1="100" x2="200" y2="0" stroke="black" strokeWidth="2" opacity={opacity1to0} />
+                <AnimatedLine x1="0" y1="100" x2="200" y2="200" stroke="black" strokeWidth="2" opacity={opacity1to0} />
+              </Svg>
+            </View>
+            <View style={styles.stickSvg}>
+              <Svg height="100" width="10" >
+                {/* 左の | */}
+                <Line x1="0" y1="0" x2="0" y2="80" stroke="black" strokeWidth="4"
                 />
               </Svg>
             </View>
-            <View style={{
-              position:'absolute',
-              top: 60,
-              left: 90,
-            }}>
-              <Svg
-                height="100"
-                width="10"
-              >
-                {/* 左の || */}
-                <Line
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="80"
-                  stroke="black"
-                  strokeWidth="4"
-                />
-              </Svg>
-            </View>
-            <Animated.View style={{
-              position:'absolute',
-              top: 60,
-              left: left180to90,
-            }}>
-              <Svg
-                height="100"
-                width="10"
-              >
+            <Animated.View style={[styles.stickSvg, {left: left180to90}]}>
+              <Svg height="100" width="10">
                 {/* 右の | */}
-                <Line
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="80"
-                  stroke="black"
-                  strokeWidth="4"
-                />
+                <Line x1="0" y1="0" x2="0" y2="80" stroke="black" strokeWidth="4" />
               </Svg>
             </Animated.View>
-            <Button
-                onPress={() => this._handleStartAnimation()}
-                title="結果を見る"
-            />
+          </View>
+          </TouchableWithoutFeedback>
+          </View>
+          <View style={styles.descriptionView}>
+              { !isAnimationFinished ?
+                 <Text style={{color: 'red'}}>画面をタッチして結果を確認してみよう！！！</Text> :
+                  <Text>説明文を入れる説明文を入れる説明文を入れる</Text>}
+              <Text>説明文を入れる説明文を入れる説明文を入れる</Text>
+              <Text>説明文を入れる説明文を入れる説明文を入れる</Text>
+              <Text>説明文を入れる説明文を入れる説明文を入れる</Text>
+              <Text>説明文を入れる説明文を入れる説明文を入れる</Text>
+          </View>
           </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+  containerView: {
+      flex: 1,
+      flexDirection: 'column',
+  },
+  figureView: {
+    flex: 2
+  },
+  descriptionView: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  outerSvg: {
+    margin: 70,
+    position:'absolute',
+  },
+  stickSvg: {
+    position:'absolute',
+    top: 60,
+    left: 90
+  }
+});
