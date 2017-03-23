@@ -8,7 +8,6 @@ import {
   Text,
 } from 'react-native';
 
-import Header from './Header';
 import RightwardsArrow from './util/RightwardsArrow';
 import { optical_illusion_set } from '../data/optical_illusion_set';
 
@@ -17,12 +16,9 @@ export default class TopPage extends Component {
     super(props);
     this.state = {
       data_list: optical_illusion_set,
-      name: 'name',
     };
   }
-  _handleChangeName(name) {
-    this.setState({name: name});
-  }
+  
   _renderRow(rowData, rowId, navigator) {
     return (
       <TouchableHighlight onPress={() => {
@@ -41,24 +37,17 @@ export default class TopPage extends Component {
   }
 
   _pressRow(rowId, navigator) {
-    this.setState({name: rowId});
-    navigator.push({title: 'SecondPage', index: 1});
+    const { data_list } = this.state;
+    navigator.push({title: data_list[rowId].name, index: 1, illusion: data_list[rowId].component});
   }
 
   render () {
-    const navigator = this.props.navigator;
-    const { name, data_list } = this.state;
+    const { navigator } = this.props;
+    const { data_list } = this.state;
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    const data = ds.cloneWithRows(data_list);
+    const data = ds.cloneWithRows(data_list.map(v => v.name));
     return (
       <View style={styles.containerView}>
-        <Header 
-          name={name}
-        />
-        <TextInput2
-          _handleChangeName={(name) => this._handleChangeName(name)}
-          name={name}
-        />
         <ListView
           dataSource={data}
           renderRow={(rowData, sectionId, rowId, highlightRow) =>
@@ -66,16 +55,6 @@ export default class TopPage extends Component {
         />
       </View>
     );
-  }
-}
-
-class TextInput2 extends Component {
-  render () {
-   return (<TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(name) => this.props._handleChangeName(name)}
-        value={this.props.name}
-      />);
   }
 }
 

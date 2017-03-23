@@ -38,12 +38,6 @@ export default class MullerLyer extends Component {
         const allowLength = 40;
         return (
         <View>
-            <Animated.View style={{
-                backgroundColor: 'black',
-                width : value,
-                height: value,
-                opacity: arrowOpacity,
-            }}/>
             <Svg
                 height="350"
                 width="350"
