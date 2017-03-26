@@ -192,19 +192,6 @@ export default class Jastrow extends Component {
     );
   }
 }
-class Circles extends Component {
-  render() {
-    let viewArray = [];
-    for (let i = 0; i < 90; i+=4) {
-      viewArray.push(
-        <Circle cx="100" cy="100" r={i.toString()} fill="none" stroke="black" strokeWidth="1"/>
-      );
-    }
-    return (
-      <Svg height="200" width="200">{viewArray}</Svg>
-    )
-  }
-}
 class Description extends Component {
   render() {
     const { descPhase } = this.props;
