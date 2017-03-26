@@ -116,7 +116,7 @@ export default class Ponzo01 extends Component {
             <Animated.View style={[styles.text_a, {opacity: linesOpacity}]}>
               <Text style={styles.abText}>A</Text>
             </Animated.View>
-            <View style={styles.stickSvg}>
+            <View style={styles.line}>
               <Svg height="10" width="100">
                 {/* 上の − */}
                 <Line x1="0" y1="0" x2="80" y2="0" stroke="black" strokeWidth="4" />
@@ -125,7 +125,7 @@ export default class Ponzo01 extends Component {
             <Animated.View style={[styles.text_b, {opacity: linesOpacity}]}>
               <Text style={styles.abText}>B</Text>
             </Animated.View>
-            <Animated.View style={[styles.stickSvg, {top: lineTop}]}>
+            <Animated.View style={[styles.line, {top: lineTop}]}>
               <Svg height="10" width="100">
                 {/* 下の − */}
                 <Line x1="0" y1="0" x2="80" y2="0" stroke="black" strokeWidth="4" />
@@ -159,7 +159,7 @@ class Description extends Component {
         break;
       case 1:
         descArray = [
-          "【解説】",
+          "【答え】",
           "AとBの棒は同じ長さです。",
           "人間は物体の大きさを背景に依存して判断していることを、示したポンゾ錯視といいます。",
         ]
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     margin: 70,
     position:'absolute',
   },
-  stickSvg: {
+  line: {
     position:'absolute',
     top: 90,
     left: 60
