@@ -7,6 +7,7 @@ import Jastrow from '../components/optical_illusion/Jastrow';
 import Diamond from '../components/optical_illusion/Diamond';
 import Poggendorff from '../components/optical_illusion/Poggendorff';
 import Zollner from '../components/optical_illusion/Zollner';
+import Fick from '../components/optical_illusion/Fick';
 
 export const optical_illusion_set = [
     { name: 'ミュラリー・リヤー錯視', component: (<MullerLyer />) },
@@ -17,7 +18,7 @@ export const optical_illusion_set = [
     { name: '正方形・ダイヤモンド形錯視', component: (<Diamond />) },
     { name: 'ポッケンドルフ錯視', component: (<Poggendorff />) },
     { name: 'ツェルナー錯視', component: (<Zollner />) },
-    { name: 'ヘリング錯視', component: (<MullerLyer />) },
+    { name: 'フィック錯視', component: (<Fick />) },
     { name: 'カフェウォール錯視', component: (<MullerLyer />) },
     { name: 'ずれたグラデーションの錯視', component: (<MullerLyer />) },
     { name: 'フレーザー錯視', component: (<MullerLyer />) },
