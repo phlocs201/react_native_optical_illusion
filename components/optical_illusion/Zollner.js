@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Button, Animated, Text, StyleSheet} from 'react-native';
 import Svg, { Line } from 'react-native-svg';
 
-export default class Jastrow extends Component {
+export default class Zollner extends Component {
   constructor(props) {
     super(props);
     this.state = {
