@@ -203,6 +203,7 @@ class Footer extends Component {
               <Button
               onPress={this.props._nextPhase}
               style={styles.button}
+              color='#2F387A'
               title="次へ"
             />
           }
@@ -219,9 +220,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   header: {
-    flex: 1,
+    marginTop: 20,
+    height: 50,
     flexDirection: 'row',
-    backgroundColor: '#2980B9',
+    backgroundColor: '#2F387A',
   },
   headerTextArea: {
     flex: 5,
@@ -270,7 +272,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   outerSvg: {
     position:'absolute',
