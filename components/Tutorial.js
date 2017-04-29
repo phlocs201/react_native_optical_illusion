@@ -6,6 +6,7 @@ import {
   Animated,
   StyleSheet,
 } from 'react-native';
+import Header from './common/Header';
 
 import Svg, { Line } from 'react-native-svg';
 
@@ -18,17 +19,7 @@ export default class Tutorial extends Component {
     const { navigator } = this.props;
     return (
         <View style={styles.containerView}>
-            <View style={styles.header}>
-                <View style={styles.backButton}>
-                    <Button
-                        color="white"
-                        onPress={() => this._pressReturn(navigator)}
-                        title="戻る"
-                    />
-                </View>
-                <View style={styles.headerTextArea}>
-                </View>
-            </View>
+            <Header title='錯視' hasButton='true' onReturn={() => this._pressReturn(navigator)} />
             <View style={styles.body}>
               <TutorialMuller />
             </View>
@@ -219,26 +210,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  header: {
-    marginTop: 20,
-    height: 50,
-    flexDirection: 'row',
-    backgroundColor: '#2F387A',
-  },
-  headerTextArea: {
-    flex: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  backButton: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  headerText: {
-    color: 'white',
-    fontSize: 20,
-   },
+
   body: {
     flex: 8,
   },
