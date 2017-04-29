@@ -58,6 +58,9 @@ export default class react_native_optical_illusion extends Component {
               }
             }
           }
+          configureScene={(route, routeStack) =>
+            Navigator.SceneConfigs.HorizontalSwipeJump
+          }
         />
     )
   }
