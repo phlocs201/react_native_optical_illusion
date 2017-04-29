@@ -244,16 +244,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2980B9',
   },
-
-
   figureView: {
     flex: 5,
-    marginVertical: 50,
+    marginVertical: 10,
     marginHorizontal: 30,
   },
   descriptionView: {
-    flex: 4,
+    flex: 5,
     margin: 20,
+  },
+  descText: {
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'left',
   },
   footerView: {
     flex: 1,
