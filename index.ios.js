@@ -53,9 +53,9 @@ export default class react_native_optical_illusion extends Component {
                   return (<Tutorial navigator={navigator} />)
               } else if (route.index === 1) {
                 return (<TopPage navigator={navigator} />)
-            } else if (route.index === 2) {
-                return (<IllusionPage navigator={navigator}/>)
-            }
+              } else if (route.index === 2) {
+                  return (<IllusionPage navigator={navigator}/>)
+              }
             }
           }
         />

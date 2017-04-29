@@ -6,9 +6,9 @@ import {
   Animated,
   StyleSheet,
 } from 'react-native';
-import Header from './common/Header';
-
 import Svg, { Line } from 'react-native-svg';
+
+import Header from './common/Header';
 
 export default class Tutorial extends Component {
   _pressReturn(navigator) {

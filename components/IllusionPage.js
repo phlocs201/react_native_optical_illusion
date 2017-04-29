@@ -6,6 +6,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Header from './common/Header';
+
 export default class IllusionPage extends Component {
   _pressReturn(navigator) {
     //navigator.push({title: 'TopPage', index: 0});
@@ -17,21 +19,10 @@ export default class IllusionPage extends Component {
     const { title, illusion } = navigator.navigationContext._currentRoute;
     return (
         <View style={styles.containerView}>
-            <View style={styles.header}>
-                <View style={styles.backButton}>
-                    <Button
-                        color="white"
-                        onPress={() => this._pressReturn(navigator)}
-                        title="戻る"
-                    />
-                </View>
-                <View style={styles.headerTextArea}>
-                    <Text style={styles.headerText}>{ title }</Text>
-                </View>
-            </View>
-            <View style={styles.body}>
-                { illusion }
-            </View>
+          <Header title={ title } hasButton='true' onReturn={() => this._pressReturn(navigator)} />
+          <View style={styles.body}>
+              { illusion }
+          </View>
         </View>
     );
   }
