@@ -37,21 +37,29 @@ export default class react_native_optical_illusion extends Component {
   }
 
   render() {
+    // DEBUG
+    this.state.isTutorialEnded = false
+    // DEBUG
     const { isTutorialEnded } = this.state;
-    return isTutorialEnded ?
-        (<Navigator
-          initialRoute={{ title: 'TopPage', index: 0 }}
+    return (
+        <Navigator
+          initialRoute={ isTutorialEnded ?
+              {title: 'TopPage', index: 1} :
+              {title: 'Tutorial', index: 0}
+          }
           // initialRouteStack={routes}
           renderScene={(route, navigator) => {
               if (route.index === 0) {
-                return (<TopPage navigator={navigator} />)
+                  return (<Tutorial navigator={navigator} />)
               } else if (route.index === 1) {
+                return (<TopPage navigator={navigator} />)
+            } else if (route.index === 2) {
                 return (<IllusionPage navigator={navigator}/>)
-              }
+            }
             }
           }
-        />) :
-        (<Tutorial/>);
+        />
+    )
   }
 }
 

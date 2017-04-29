@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, Animated, Text, TouchableWithoutFeedback, StyleSheet} from 'react-native';
+import { View, Button, Animated, Text, StyleSheet} from 'react-native';
 import Svg, { Line } from 'react-native-svg';
 
 const AnimatedLine = Animated.createAnimatedComponent(Line);

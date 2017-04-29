@@ -38,7 +38,7 @@ export default class TopPage extends Component {
 
   _pressRow(rowId, navigator) {
     const { data_list } = this.state;
-    navigator.push({title: data_list[rowId].name, index: 1, illusion: data_list[rowId].component});
+    navigator.push({title: data_list[rowId].name, index: 2, illusion: data_list[rowId].component});
   }
 
   render () {
