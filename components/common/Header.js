@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
-  Button,
+  TouchableHighlight,
   Text,
   StyleSheet,
 } from 'react-native';
@@ -11,16 +11,17 @@ export default class Header extends Component {
     super(props);
   }
   render () {
-    const { title, hasButton, onReturn } = this.props;
+    const { title, hasButton, buttonText, onReturn } = this.props;
     return (
       <View style={styles.header}>
             <View style={styles.L_ButtonContainer}>
               {(() => { return hasButton === 'true' ? (
-                <Button
-                    color="white"
-                    onPress={() => onReturn()}
-                    title="戻る"
-                />
+                <TouchableHighlight style={styles.touchable}
+                  underlayColor='#2F387A'
+                  onPress={() => onReturn()}
+                >
+                  <Text style={styles.button}>{ buttonText || '戻る' }</Text>
+                </TouchableHighlight>
               ) : null;
               })()}
             </View>
@@ -50,6 +51,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  button: {
+    color: 'white',
+    fontSize: 16,
+  },
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -57,6 +62,6 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 16,
    },
 });

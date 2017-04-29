@@ -19,7 +19,7 @@ export default class Tutorial extends Component {
     const { navigator } = this.props;
     return (
         <View style={styles.containerView}>
-            <Header title='錯視' hasButton='true' onReturn={() => this._pressReturn(navigator)} />
+            <Header title='錯視' buttonText='開始' hasButton='true' onReturn={() => this._pressReturn(navigator)} />
             <View style={styles.body}>
               <TutorialMuller />
             </View>
