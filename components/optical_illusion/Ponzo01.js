@@ -3,6 +3,7 @@ import { View, Animated, Text, TouchableWithoutFeedback, StyleSheet, Image } fro
 import Svg, { Line } from 'react-native-svg';
 
 import Footer from '../common/Footer';
+import Description from '../common/Description';
 
 const AnimatedLine = Animated.createAnimatedComponent(Line);
 
@@ -135,7 +136,7 @@ export default class Ponzo01 extends Component {
             </Animated.View>
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} />
         <Footer
           illusionPhase={illusionPhase}
           maxPhase={2}
@@ -147,45 +148,22 @@ export default class Ponzo01 extends Component {
   }
 }
 
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "【質問】",
-          "AとBの2本の棒があります。",
-          "どちらの棒の方が長く見えますか？",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "【答え】",
-          "AとBの棒は同じ長さです。",
-          "人間は物体の大きさを背景に依存して判断していることを、示したポンゾ錯視といいます。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "【解説】",
-          "電車の線路などでは、遠方が短く、近い線路程長く見えますが、実際は同じ長さですよね。",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
+const texts = [
+  [
+    "【質問】",
+    "AとBの2本の棒があります。",
+    "どちらの棒の方が長く見えますか？",
+  ],
+  [
+    "【答え】",
+    "AとBの棒は同じ長さです。",
+    "人間は物体の大きさを背景に依存して判断していることを、示したポンゾ錯視といいます。",
+  ],
+  [
+    "【解説】",
+    "電車の線路などでは、遠方が短く、近い線路程長く見えますが、実際は同じ長さですよね。",
+  ],
+];
 
 const styles = StyleSheet.create({
   containerView: {
@@ -193,11 +171,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   figureView: {
-    flex: 5,
-  },
-  descriptionView: {
-    flex: 2,
-    margin: 20,
+    flex: 6,
   },
   outerSvg: {
     margin: 70,
@@ -207,10 +181,6 @@ const styles = StyleSheet.create({
     position:'absolute',
     top: 90,
     left: 60
-  },
-  descText: {
-    fontSize: 20,
-    textAlign: 'left',
   },
   image: {
     position: 'absolute',

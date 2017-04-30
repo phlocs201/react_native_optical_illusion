@@ -3,6 +3,7 @@ import { View, Animated, Text, Image, StyleSheet} from 'react-native';
 import Svg, { Line, Rect, Path } from 'react-native-svg';
 
 import Footer from '../common/Footer';
+import Description from '../common/Description';
 
 export default class Jastrow extends Component {
   constructor(props) {
@@ -183,7 +184,7 @@ export default class Jastrow extends Component {
             <Image style={styles.image} source={require('../../images/baumkuchen.jpg')}/>
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} />
         <Footer
           illusionPhase={illusionPhase}
           maxPhase={3}
@@ -194,50 +195,26 @@ export default class Jastrow extends Component {
     );
   }
 }
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "【質問】",
-          "あなたは、AとBのかまぼこ形のどちらが大きく見えますか？",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "【答え】",
-          "Bの方が大きく見えたでしょうか？",
-          "同じ大きさのかまぼこ形でも、並べると下のかまぼこ形の方が大きく見えることを、「エーレンシュタイン形錯視」といいます。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "【解説】",
-          "Aの下の円弧とBの上の円弧を比べてしまうため、Bの方が大きく見えてしまうのです。",
-        ]
-        break;
-      case 3:
-        descArray = [
-          "【解説】",
-          "この錯視を知っていれば、見た目に惑わされずに大きい方のバームクーヘンを選べるはず！",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
+
+const texts = [
+  [
+    "【質問】",
+    "あなたは、AとBのかまぼこ形のどちらが大きく見えますか？",
+  ],
+  [
+    "【答え】",
+    "Bの方が大きく見えたでしょうか？",
+    "同じ大きさのかまぼこ形でも、並べると下のかまぼこ形の方が大きく見えることを、「エーレンシュタイン形錯視」といいます。",
+  ],
+  [
+    "【解説】",
+    "Aの下の円弧とBの上の円弧を比べてしまうため、Bの方が大きく見えてしまうのです。",
+  ],
+  [
+    "【解説】",
+    "この錯視を知っていれば、見た目に惑わされずに大きい方のバームクーヘンを選べるはず！",
+  ],
+];
 
 const styles = StyleSheet.create({
   containerView: {
@@ -249,20 +226,12 @@ const styles = StyleSheet.create({
     marginVertical: 70,
     marginHorizontal: 50,
   },
-  descriptionView: {
-    flex: 4,
-    margin: 20,
-  },
   outerSvg: {
     position:'absolute',
   },
   path: {
     top: 50,
     left: 20,
-  },
-  descText: {
-    fontSize: 20,
-    textAlign: 'left',
   },
   abText: {
     fontSize: 20,

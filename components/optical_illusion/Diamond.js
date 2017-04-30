@@ -3,6 +3,7 @@ import { View, Animated, Text, TouchableWithoutFeedback, StyleSheet} from 'react
 import Svg, { Line, Rect } from 'react-native-svg';
 
 import Footer from '../common/Footer';
+import Description from '../common/Description';
 
 export default class Diamond extends Component {
   constructor(props) {
@@ -157,7 +158,7 @@ export default class Diamond extends Component {
             </Svg>
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} />
         <Footer
           illusionPhase={illusionPhase}
           maxPhase={2}
@@ -168,45 +169,23 @@ export default class Diamond extends Component {
     );
   }
 }
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "【質問】",
-          "あなたは、AとBの正方形のどちらが大きく見えますか？",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "【答え】",
-          "Bの方が大きく見えたでしょうか？",
-          "同じ大きさの正方形でも、傾けた方が大きく見えることを、「正方形・ダイヤモンド形錯視」といいます。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "【解説】",
-          "AとBを比較する際に、脳が勝手に赤い線の部分を比較してしまい、Bの方が大きく見えてしまいます。",
-          "お店の梱包では、少しでも量を多く見せるためにこの手法が使われます。",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
+
+const texts = [
+  [
+    "【質問】",
+    "あなたは、AとBの正方形のどちらが大きく見えますか？",
+  ],
+  [
+    "【答え】",
+    "Bの方が大きく見えたでしょうか？",
+    "同じ大きさの正方形でも、傾けた方が大きく見えることを、「正方形・ダイヤモンド形錯視」といいます。",
+  ],
+  [
+    "【解説】",
+    "AとBを比較する際に、脳が勝手に赤い線の部分を比較してしまい、Bの方が大きく見えてしまいます。",
+    "お店の梱包では、少しでも量を多く見せるためにこの手法が使われます。",
+  ],
+];
 
 const styles = StyleSheet.create({
   containerView: {
@@ -218,16 +197,8 @@ const styles = StyleSheet.create({
     marginVertical: 70,
     marginHorizontal: 50,
   },
-  descriptionView: {
-    flex: 4,
-    margin: 20,
-  },
   outerSvg: {
     position:'absolute',
-  },
-  descText: {
-    fontSize: 20,
-    textAlign: 'left',
   },
   abText: {
     fontSize: 20,

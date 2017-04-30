@@ -3,6 +3,7 @@ import { View, Animated, Text, StyleSheet} from 'react-native';
 import Svg, { Line } from 'react-native-svg';
 
 import Footer from '../common/Footer';
+import Description from '../common/Description';
 
 export default class Zollner extends Component {
   constructor(props) {
@@ -94,7 +95,7 @@ export default class Zollner extends Component {
             <Lines y="170" isNorthWest="0" />
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} />
         <Footer
           illusionPhase={illusionPhase}
           maxPhase={2}
@@ -120,44 +121,22 @@ class Lines extends Component {
     )
   }
 }
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "【質問】",
-          "直線Aは、下に傾いて見えますか？",
-          "それとも、上に傾いて見えますか？",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "【答え】 傾いていない",
-          "平行の水平線が交互に傾いて見えることを「ツェルナー錯視」といいます。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "【解説】",
-          "短い斜線と直線がつくる角度を鋭角過大視する方向に起こる、角度錯視になります。",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
+
+const texts = [
+  [
+    "【質問】",
+    "直線Aは、下に傾いて見えますか？",
+    "それとも、上に傾いて見えますか？",
+  ],
+  [
+    "【答え】 傾いていない",
+    "平行の水平線が交互に傾いて見えることを「ツェルナー錯視」といいます。",
+  ],
+  [
+    "【解説】",
+    "短い斜線と直線がつくる角度を鋭角過大視する方向に起こる、角度錯視になります。",
+  ],
+];
 
 const styles = StyleSheet.create({
   containerView: {
@@ -169,20 +148,12 @@ const styles = StyleSheet.create({
     marginVertical: 70,
     marginHorizontal: 50,
   },
-  descriptionView: {
-    flex: 4,
-    margin: 20,
-  },
   outerSvg: {
     position:'absolute',
   },
   path: {
     top: 50,
     left: 20,
-  },
-  descText: {
-    fontSize: 20,
-    textAlign: 'left',
   },
   abText: {
     fontSize: 20,
