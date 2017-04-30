@@ -19,16 +19,16 @@ import Tutorial from './components/Tutorial';
 export default class react_native_optical_illusion extends Component {
   constructor(props) {
     super(props);
-    this.state = { isTutorialEnded: false　};
+    this.state = { isTutorialEnded: 3 };
   }
 
   componentWillMount() {
       try {
         const value = AsyncStorage.getItem('@isTutorialEnded', (err, value) => {
             if (value === null) {
-                AsyncStorage.setItem('@isTutorialEnded', 'hoge');
+                this.setState({ isTutorialEnded: 0 });
             } else {
-                this.setState({ isTutorialEnded: true });
+                this.setState({ isTutorialEnded: 1 });
             }
         });
       } catch (err) {
@@ -36,30 +36,30 @@ export default class react_native_optical_illusion extends Component {
       }
   }
 
+  _renderScene(route, navigator) {
+    switch(route.index) {
+        case 0:
+        return (<Tutorial navigator={navigator} />);
+        case 1:
+        return (<TopPage navigator={navigator} />);
+        case 2:
+        return (<IllusionPage navigator={navigator}/>);
+        default:
+        return null;
+    }
+  }
+
   render() {
     const { isTutorialEnded } = this.state;
-    return (
-        <Navigator
-          initialRoute={ isTutorialEnded ?
-              {title: 'TopPage', index: 1} :
-              {title: 'Tutorial', index: 0}
-          }
-          // initialRouteStack={routes}
-          renderScene={(route, navigator) => {
-              if (route.index === 0) {
-                  return (<Tutorial navigator={navigator} />)
-              } else if (route.index === 1) {
-                return (<TopPage navigator={navigator} />)
-              } else if (route.index === 2) {
-                  return (<IllusionPage navigator={navigator}/>)
-              }
-            }
-          }
+    return (isTutorialEnded !== 3) ?
+        (<Navigator
+          initialRoute={{ index: isTutorialEnded }}
+          renderScene={(route, navigator) => this._renderScene(route, navigator)}
           configureScene={(route, routeStack) =>
             Navigator.SceneConfigs.HorizontalSwipeJump
           }
-        />
-    )
+        />) :
+        null;
   }
 }
 

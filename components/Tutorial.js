@@ -5,6 +5,7 @@ import {
   Button,
   Animated,
   StyleSheet,
+  AsyncStorage,
 } from 'react-native';
 import Svg, { Line } from 'react-native-svg';
 
@@ -15,6 +16,10 @@ import Description from './common/Description';
 export default class Tutorial extends Component {
   _pressReturn(navigator) {
     navigator.push({title: 'TopPage', index: 1});
+  }
+
+  componentWillMount() {
+    AsyncStorage.setItem('@isTutorialEnded', 'hoge');
   }
 
   render () {
