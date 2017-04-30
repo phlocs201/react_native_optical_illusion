@@ -14,8 +14,8 @@ export default class Description extends Component {
     } else {
       descArray = ["エラーが発生しました。トップページから開き直してください。"];
     }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
+    const viewArray = descArray.map((v, i) => {
+       return (<Text key={'description' + i} style={styles.descText}>{v}</Text>);
     });
     return (
       <View style={[styles.descriptionView, {flex: flex || 4}]}>{viewArray}</View>
