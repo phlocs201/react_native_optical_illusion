@@ -9,6 +9,7 @@ import {
 import Svg, { Line } from 'react-native-svg';
 
 import Header from './common/Header';
+import Footer from './common/Footer';
 
 export default class Tutorial extends Component {
   _pressReturn(navigator) {
@@ -19,7 +20,7 @@ export default class Tutorial extends Component {
     const { navigator } = this.props;
     return (
         <View style={styles.containerView}>
-            <Header title='錯視' buttonText='開始' hasButton='true' onReturn={() => this._pressReturn(navigator)} />
+            <Header title='錯視の世界' buttonText='開始' hasButton='true' onReturn={() => this._pressReturn(navigator)} />
             <View style={styles.body}>
               <TutorialMuller />
             </View>
@@ -27,7 +28,6 @@ export default class Tutorial extends Component {
     );
   }
 }
-
 
 const AnimatedLine = Animated.createAnimatedComponent(Line);
 
@@ -106,7 +106,7 @@ class TutorialMuller extends Component {
         <Description descPhase={descPhase}/>
         <Footer
           illusionPhase={illusionPhase}
-          descPhase={descPhase}
+          maxPhase={4}
           _nextPhase={this._nextPhase}
         />
       </View>
@@ -183,40 +183,14 @@ class Description extends Component {
   }
 }
 
-class Footer extends Component {
-  render() {
-    const { illusionPhase, handleFunc } = this.props;
-    return(
-      <View style={styles.footerView}>
-        <View style={styles.nextButtonsLeft} />
-        <View style={styles.nextButton}>
-          {illusionPhase === 4 ? <View /> :
-              <Button
-              onPress={this.props._nextPhase}
-              style={styles.button}
-              color='#2F387A'
-              title="次へ"
-            />
-          }
-        </View>
-      </View>
-    );
-  }
-}
-
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor: 'white',
     flex: 1,
     flexDirection: 'column',
   },
-
   body: {
     flex: 8,
-  },
-  footer: {
-    flex: 1,
-    backgroundColor: '#2980B9',
   },
   figureView: {
     flex: 5,
@@ -231,20 +205,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
     textAlign: 'left',
-  },
-  footerView: {
-    flex: 1,
-    flexDirection: 'row',
-    margin: 20,
-  },
-  nextButtonsLeft: {
-    flex: 1,
-  },
-  nextButton: {
-    flex: 1,
-  },
-  button: {
-    justifyContent: 'flex-start',
   },
   outerSvg: {
     position:'absolute',

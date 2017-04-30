@@ -37,9 +37,6 @@ export default class react_native_optical_illusion extends Component {
   }
 
   render() {
-    // DEBUG
-    this.state.isTutorialEnded = false
-    // DEBUG
     const { isTutorialEnded } = this.state;
     return (
         <Navigator

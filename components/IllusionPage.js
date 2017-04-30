@@ -10,7 +10,6 @@ import Header from './common/Header';
 
 export default class IllusionPage extends Component {
   _pressReturn(navigator) {
-    //navigator.push({title: 'TopPage', index: 0});
     navigator.pop();
   }
 
