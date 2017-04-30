@@ -10,6 +10,7 @@ import Svg, { Line } from 'react-native-svg';
 
 import Header from './common/Header';
 import Footer from './common/Footer';
+import Description from './common/Description';
 
 export default class Tutorial extends Component {
   _pressReturn(navigator) {
@@ -103,7 +104,7 @@ class TutorialMuller extends Component {
             <Lines linesOpacity={linesOpacity} arrowDir={40}/>
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} flex={5}/>
         <Footer
           illusionPhase={illusionPhase}
           maxPhase={4}
@@ -127,61 +128,34 @@ const Lines = props => {
     );
 };
 
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "まず錯視の世界に招待する前に、注意点があります。",
-          "車酔いなどに弱い方が見ると、気分が悪くなる場合がありますので、閲覧の際には注意してください。",
-          "また、見え方には個人差がありますので、ご了承ください",
-          "それでは、錯視の世界にご招待いたしましょう。",
-          "「次へ」というボタンをタッチしてみてください。",
-          "それが、錯視の世界の入口になります。",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "最初ということもあり、多くの人が目にしたことがある錯視を用意しました。",
-          "初めてみた人のためにも説明をすると、上に書かれている2本の線の長さは、同じ長さなのです。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "検証のために、線の先に書かれた矢印の部分を消して、長さを確認してみましょう。",
-        ]
-        break;
-      case 3:
-        descArray = [
-          "検証のために、線の先に書かれた矢印の部分を消して、長さを確認してみましょう。",
-          "重ねて見ると、同じ長さであることがはっきりと分かります。",
-          "これをミュラー・リヤー錯視といいます。",
-        ]
-        break;
-      case 4:
-        descArray = [
-          "初めての錯視は、理解していただけたと思います。",
-          "しかし、まだここは錯視の世界のほんの入口にすぎません。",
-          "この錯視を見て頭が痛くなりそう、ちょっと気持ち悪くなりそうと思った方は、このアプリをこのまま続けることはオススメしません。",
-          "この文を読んでもこのアプリを進めてくれる方は、どうぞ上のボタンから最後まで楽しんでください。",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
+const texts = [
+  [
+    "まず錯視の世界に招待する前に、注意点があります。",
+    "車酔いなどに弱い方が見ると、気分が悪くなる場合がありますので、閲覧の際には注意してください。",
+    "また、見え方には個人差がありますので、ご了承ください",
+    "それでは、錯視の世界にご招待いたしましょう。",
+    "「次へ」というボタンをタッチしてみてください。",
+    "それが、錯視の世界の入口になります。",
+  ],
+  [
+    "最初ということもあり、多くの人が目にしたことがある錯視を用意しました。",
+    "初めてみた人のためにも説明をすると、上に書かれている2本の線の長さは、同じ長さなのです。",
+  ],
+  [
+    "検証のために、線の先に書かれた矢印の部分を消して、長さを確認してみましょう。",
+  ],
+  [
+    "検証のために、線の先に書かれた矢印の部分を消して、長さを確認してみましょう。",
+    "重ねて見ると、同じ長さであることがはっきりと分かります。",
+    "これをミュラー・リヤー錯視といいます。",
+  ],
+  [
+    "初めての錯視は、理解していただけたと思います。",
+    "しかし、まだここは錯視の世界のほんの入口にすぎません。",
+    "この錯視を見て頭が痛くなりそう、ちょっと気持ち悪くなりそうと思った方は、このアプリをこのまま続けることはオススメしません。",
+    "この文を読んでもこのアプリを進めてくれる方は、どうぞ上のボタンから最後まで楽しんでください。",
+  ]
+]
 
 const styles = StyleSheet.create({
   containerView: {
@@ -196,15 +170,6 @@ const styles = StyleSheet.create({
     flex: 5,
     marginVertical: 10,
     marginHorizontal: 30,
-  },
-  descriptionView: {
-    flex: 5,
-    margin: 20,
-  },
-  descText: {
-    fontSize: 16,
-    marginBottom: 10,
-    textAlign: 'left',
   },
   outerSvg: {
     position:'absolute',
