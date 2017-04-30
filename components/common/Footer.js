@@ -12,7 +12,7 @@ export default class Footer extends Component {
   render() {
     const { illusionPhase, maxPhase, _previousPhase, _nextPhase } = this.props;
     return(
-      <View style={styles.footerView}>
+      <View style={styles.container}>
         <View style={styles.previousButton}>
           { !_previousPhase || illusionPhase === 0 ?
             <View /> :
@@ -40,7 +40,7 @@ export default class Footer extends Component {
 }
 
 const styles = StyleSheet.create({
-  footerView: {
+  container: {
     flex: 1,
     flexDirection: 'row',
     margin: 20,
