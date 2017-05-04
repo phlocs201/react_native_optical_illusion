@@ -149,7 +149,7 @@ class Circles extends Component {
     let viewArray = [];
     for (let i = 0; i < 90; i+=4) {
       viewArray.push(
-        <Circle cx="100" cy="100" r={i.toString()} fill="none" stroke="black" strokeWidth="1"/>
+        <Circle cx="100" cy="100" r={i.toString()} fill="none" stroke="black" strokeWidth="1" key={i}/>
       );
     }
     return (
