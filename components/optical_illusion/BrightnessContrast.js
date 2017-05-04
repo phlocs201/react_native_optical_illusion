@@ -95,7 +95,7 @@ export default class BrightnessContrast extends Component {
           </Animated.View>
           <Animated.View style={[styles.outerSvg, {opacity: rectsOpacity}]}>
             <Svg height="150" width="150">
-              <Rect x="0" y="0" width="150" height="150" fill="#000000" stroke="null" strokeWidth="1"/>
+              <Rect x="0" y="0" width="150" height="150" fill="#000000" strokeWidth="1"/>
             </Svg>
           </Animated.View>
           <Animated.View style={[styles.outerSvg, {
@@ -103,12 +103,12 @@ export default class BrightnessContrast extends Component {
             left: leftRectLeft,
           }]}>
             <Svg height="40" width="40">
-              <Rect x="0" y="0" width="40" height="40" fill="#333333" stroke="null" strokeWidth="1"/>
+              <Rect x="0" y="0" width="40" height="40" fill="#333333" strokeWidth="1"/>
             </Svg>
             </Animated.View>
           <Animated.View style={[styles.outerSvg, {opacity: rectsOpacity, left: 150}]}>
             <Svg height="150" width="150">
-              <Rect x="0" y="0" width="150" height="150" fill="#eeeeee" stroke="null" strokeWidth="1"/>
+              <Rect x="0" y="0" width="150" height="150" fill="#eeeeee" strokeWidth="1"/>
             </Svg>
           </Animated.View>
           <Animated.View style={[styles.outerSvg, {
@@ -116,7 +116,7 @@ export default class BrightnessContrast extends Component {
             left: rightRectLeft,
           }]}>
             <Svg height="40" width="40">
-              <Rect x="0" y="0" width="40" height="40" fill="#333333" stroke="null" strokeWidth="1"/>
+              <Rect x="0" y="0" width="40" height="40" fill="#333333" strokeWidth="1"/>
             </Svg>
             </Animated.View>
         </View>
