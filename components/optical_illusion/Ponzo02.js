@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Button, Animated, Text, TouchableWithoutFeedback, StyleSheet, Image } from 'react-native';
+import { View, Animated, Text, TouchableWithoutFeedback, StyleSheet, Image } from 'react-native';
 import Svg, { Line, Circle } from 'react-native-svg';
+
+import Footer from '../common/Footer';
+import Description from '../common/Description';
 
 const AnimatedLine = Animated.createAnimatedComponent(Line);
 
@@ -133,85 +136,34 @@ export default class Ponzo02 extends Component {
             </Animated.View>
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} />
         <Footer
           illusionPhase={illusionPhase}
-          descPhase={descPhase}
-          _nextPhase={this._nextPhase}
+          maxPhase={2}
           _previousPhase={this._previousPhase}
+          _nextPhase={this._nextPhase}
         />
       </View>
     );
   }
 }
 
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "【質問】",
-          "AとBの2つの丸があります。",
-          "どちらの丸の方が大きく見えますか？",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "【答え】",
-          "AとBの丸は同じ大きさです。",
-          "人間は物体の大きさを背景に依存して判断していることを、示したポンゾ錯視といいます。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "【解説】",
-          "この錯視によって「地平線近くに浮かぶ月は、なぜか大きく見え、天高く上った月は小さく見える」という誰でも経験した現象を説明することができます。",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
-
-class Footer extends Component {
-  render() {
-    const { illusionPhase, handleFunc } = this.props;
-    return(
-      <View style={styles.footerView}>
-        <View style={styles.previousButton}>
-          {illusionPhase === 0 ? <View /> :
-              <Button
-              onPress={this.props._previousPhase}
-              style={styles.button}
-              title="戻る"
-            />
-          }
-        </View>
-        <View style={styles.nextButton}>
-          {illusionPhase === 2 ? <View /> :
-              <Button
-              onPress={this.props._nextPhase}
-              style={styles.button}
-              title="次へ"
-            />
-          }
-        </View>
-      </View>
-    );
-  }
-}
+const texts = [
+  [
+    "【質問】",
+    "AとBの2つの丸があります。",
+    "どちらの丸の方が大きく見えますか？",
+  ],
+  [
+    "【答え】",
+    "AとBの丸は同じ大きさです。",
+    "人間は物体の大きさを背景に依存して判断していることを、示したポンゾ錯視といいます。",
+  ],
+  [
+    "【解説】",
+    "この錯視によって「地平線近くに浮かぶ月は、なぜか大きく見え、天高く上った月は小さく見える」という誰でも経験した現象を説明することができます。",
+  ],
+];
 
 const styles = StyleSheet.create({
   containerView: {
@@ -219,25 +171,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   figureView: {
-    flex: 5,
-  },
-  descriptionView: {
-    flex: 2,
-    margin: 20,
-  },
-  footerView: {
-    flex: 1,
-    flexDirection: 'row',
-    margin: 20,
-  },
-  previousButton: {
-    flex: 1,
-  },
-  nextButton: {
-    flex: 1,
-  },
-  button: {
-    justifyContent: 'flex-start'
+    flex: 6,
   },
   outerSvg: {
     margin: 70,
@@ -247,10 +181,6 @@ const styles = StyleSheet.create({
     position:'absolute',
     top: 40,
     left: 65
-  },
-  descText: {
-    fontSize: 20,
-    textAlign: 'left',
   },
   image: {
     position: 'absolute',

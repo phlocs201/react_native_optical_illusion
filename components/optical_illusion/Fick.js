@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Button, Animated, Text, TouchableWithoutFeedback, StyleSheet} from 'react-native';
+import { View, Animated, Text, TouchableWithoutFeedback, StyleSheet} from 'react-native';
 import Svg, { Line, Rect } from 'react-native-svg';
+
+import Footer from '../common/Footer';
+import Description from '../common/Description';
 
 export default class Fick extends Component {
   constructor(props) {
@@ -159,84 +162,34 @@ export default class Fick extends Component {
             </Svg>
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} />
         <Footer
           illusionPhase={illusionPhase}
-          descPhase={descPhase}
-          _nextPhase={this._nextPhase}
+          maxPhase={2}
           _previousPhase={this._previousPhase}
+          _nextPhase={this._nextPhase}
         />
       </View>
     );
   }
 }
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "【質問】",
-          "あなたは、Aの棒とBの棒、どちらが長く見えますか？",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "【答え】",
-          "Bのほうが長く見えたでしょうか？長さは同じです。",
-          "たて棒と横棒は同じ長さですが、たて線の方が長く見えることを「フィック錯視」といいます。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "【解説】",
-          "人間の脳は同じ長さでもたて棒よりも横棒を長いと認識します。",
-        　"そのため、物を収納する際は縦に置くより横に置くことですっきり見える技術があります。",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
 
-class Footer extends Component {
-  render() {
-    const { illusionPhase, handleFunc } = this.props;
-    return(
-      <View style={styles.footerView}>
-        <View style={styles.previousButton}>
-          {illusionPhase === 0 ? <View /> :
-              <Button
-              onPress={this.props._previousPhase}
-              style={styles.button}
-              title="戻る"
-            />
-          }
-        </View>
-        <View style={styles.nextButton}>
-          {illusionPhase === 2 ? <View /> :
-              <Button
-              onPress={this.props._nextPhase}
-              style={styles.button}
-              title="次へ"
-            />
-          }
-        </View>
-      </View>
-    );
-  }
-}
+const texts = [
+  [
+    "【質問】",
+    "あなたは、Aの棒とBの棒、どちらが長く見えますか？",
+  ],
+  [
+    "【答え】",
+    "Bのほうが長く見えたでしょうか？長さは同じです。",
+    "たて棒と横棒は同じ長さですが、たて線の方が長く見えることを「フィック錯視」といいます。",
+  ],
+  [
+    "【解説】",
+    "人間の脳は同じ長さでもたて棒よりも横棒を長いと認識します。",
+  　"そのため、物を収納する際は縦に置くより横に置くことですっきり見える技術があります。",
+  ]
+];
 
 const styles = StyleSheet.create({
   containerView: {
@@ -244,34 +197,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   figureView: {
-    flex: 5,
-    marginVertical: 70,
+    flex: 7,
+    marginVertical: 50,
     marginHorizontal: 50,
-  },
-  descriptionView: {
-    flex: 4,
-    margin: 20,
-  },
-  footerView: {
-    flex: 1,
-    flexDirection: 'row',
-    margin: 20,
-  },
-  previousButton: {
-    flex: 1,
-  },
-  nextButton: {
-    flex: 1,
-  },
-  button: {
-    justifyContent: 'flex-start'
   },
   outerSvg: {
     position:'absolute',
-  },
-  descText: {
-    fontSize: 20,
-    textAlign: 'left',
   },
   abText: {
     fontSize: 20,

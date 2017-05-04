@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Button, Animated, Text, StyleSheet} from 'react-native';
+import { View, Animated, Text, StyleSheet} from 'react-native';
 import Svg, { Line } from 'react-native-svg';
+
+import Footer from '../common/Footer';
+import Description from '../common/Description';
 
 export default class Zollner extends Component {
   constructor(props) {
@@ -92,12 +95,12 @@ export default class Zollner extends Component {
             <Lines y="170" isNorthWest="0" />
           </Animated.View>
         </View>
-        <Description descPhase={descPhase}/>
+        <Description descPhase={descPhase} texts={texts} />
         <Footer
           illusionPhase={illusionPhase}
-          descPhase={descPhase}
-          _nextPhase={this._nextPhase}
+          maxPhase={2}
           _previousPhase={this._previousPhase}
+          _nextPhase={this._nextPhase}
         />
       </View>
     );
@@ -118,72 +121,22 @@ class Lines extends Component {
     )
   }
 }
-class Description extends Component {
-  render() {
-    const { descPhase } = this.props;
-    let descArray = [];
-    switch (descPhase) {
-      case 0:
-        descArray = [
-          "【質問】",
-          "直線Aは、下に傾いて見えますか？",
-          "それとも、上に傾いて見えますか？",
-        ]
-        break;
-      case 1:
-        descArray = [
-          "【答え】 傾いていない",
-          "平行の水平線が交互に傾いて見えることを「ツェルナー錯視」といいます。",
-        ]
-        break;
-      case 2:
-        descArray = [
-          "【解説】",
-          "短い斜線と直線がつくる角度を鋭角過大視する方向に起こる、角度錯視になります。",
-        ]
-        break;
-      default:
-        descArray = [
-          "エラーが発生しました。トップページから開き直してください。"
-        ]
-        break;
-    }
-    const viewArray = descArray.map((v) => {
-       return (<Text style={styles.descText}>{v}</Text>);
-    });
-    return (
-      <View style={styles.descriptionView}>{viewArray}</View>
-    )
-  }
-}
 
-class Footer extends Component {
-  render() {
-    const { illusionPhase, handleFunc } = this.props;
-    return(
-      <View style={styles.footerView}>
-        <View style={styles.previousButton}>
-          {illusionPhase === 0 ? <View /> :
-              <Button
-              onPress={this.props._previousPhase}
-              style={styles.button}
-              title="戻る"
-            />
-          }
-        </View>
-        <View style={styles.nextButton}>
-          {illusionPhase === 2 ? <View /> :
-              <Button
-              onPress={this.props._nextPhase}
-              style={styles.button}
-              title="次へ"
-            />
-          }
-        </View>
-      </View>
-    );
-  }
-}
+const texts = [
+  [
+    "【質問】",
+    "直線Aは、下に傾いて見えますか？",
+    "それとも、上に傾いて見えますか？",
+  ],
+  [
+    "【答え】 傾いていない",
+    "平行の水平線が交互に傾いて見えることを「ツェルナー錯視」といいます。",
+  ],
+  [
+    "【解説】",
+    "短い斜線と直線がつくる角度を鋭角過大視する方向に起こる、角度錯視になります。",
+  ],
+];
 
 const styles = StyleSheet.create({
   containerView: {
@@ -195,34 +148,12 @@ const styles = StyleSheet.create({
     marginVertical: 70,
     marginHorizontal: 50,
   },
-  descriptionView: {
-    flex: 4,
-    margin: 20,
-  },
-  footerView: {
-    flex: 1,
-    flexDirection: 'row',
-    margin: 20,
-  },
-  previousButton: {
-    flex: 1,
-  },
-  nextButton: {
-    flex: 1,
-  },
-  button: {
-    justifyContent: 'flex-start'
-  },
   outerSvg: {
     position:'absolute',
   },
   path: {
     top: 50,
     left: 20,
-  },
-  descText: {
-    fontSize: 20,
-    textAlign: 'left',
   },
   abText: {
     fontSize: 20,

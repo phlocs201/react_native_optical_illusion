@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import RightwardsArrow from './util/RightwardsArrow';
+import Header from './common/Header';
 import { optical_illusion_set } from '../data/optical_illusion_set';
 
 export default class TopPage extends Component {
@@ -38,7 +39,7 @@ export default class TopPage extends Component {
 
   _pressRow(rowId, navigator) {
     const { data_list } = this.state;
-    navigator.push({title: data_list[rowId].name, index: 1, illusion: data_list[rowId].component});
+    navigator.push({title: data_list[rowId].name, index: 2, illusion: data_list[rowId].component});
   }
 
   render () {
@@ -48,6 +49,7 @@ export default class TopPage extends Component {
     const data = ds.cloneWithRows(data_list.map(v => v.name));
     return (
       <View style={styles.containerView}>
+        <Header title='錯視一覧' />
         <ListView
           dataSource={data}
           renderRow={(rowData, sectionId, rowId, highlightRow) =>
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
   containerView: {
     backgroundColor: 'white',
     flex: 1,
-    paddingTop: 22,
   },
   listRow: {
     flex: 1,
