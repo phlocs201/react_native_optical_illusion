@@ -113,7 +113,7 @@ class Lines extends Component {
     let viewArray = [];
     for(let i = 0; i <= 255; i += 15 ) {
       viewArray.push(
-        <Line x1={i - num}  y1={Number(y) - 5} x2={i + num}  y2={Number(y) + 5} stroke="black" strokeWidth="1"/>
+        <Line x1={i - num}  y1={Number(y) - 5} x2={i + num}  y2={Number(y) + 5} stroke="black" strokeWidth="1" key={i}/>
       );
     }
     return (
